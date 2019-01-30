@@ -48,6 +48,24 @@ namespace Domain.Tests
 
             _reportSender.Verify(x => x.Send(It.IsAny<Report>()), Times.Exactly(2));
         }
+        
+        [Test]
+        public void SendReports_WhenCall_SentAllCreatedReports()
+        {
+            var report1 = new Report();
+            var report2 = new Report();
+            _reportBuilder.Setup(x => x.BuildReports()).Returns(new List<Report>
+            {
+                report1,
+                report2
+            });
+
+            var result = _reportService.SendReports();
+
+            _reportSender.Verify(x => x.Send(report1), Times.Once);
+            _reportSender.Verify(x => x.Send(report2), Times.Once);
+        }
+
 
         [Test]
         public void SendReports_NoReportsCreated_SendSpecialReportToManager()
