@@ -13,14 +13,14 @@ namespace Domain
             _reportSender = reportSender;
         }
 
-        public int SendReports()
+        public int SendReports(int clientId)
         {
-            var reports = _reportBuilder.BuildReports().ToList();
-            var specialReport = _reportBuilder.BuildSpecialReport();
+            var reports = _reportBuilder.BuildReports(clientId).ToList();
+
             if (reports.Count == 0)
             {
+                var specialReport = _reportBuilder.BuildSpecialReport();
                 _reportSender.Send(specialReport);
-
             }
             else
             {
