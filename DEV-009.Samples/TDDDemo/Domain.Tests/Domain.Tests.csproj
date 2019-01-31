@@ -55,6 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fakes\IEmailSender.cs" />
+    <Compile Include="Fakes\Storage.cs" />
+    <Compile Include="Fakes\StorageManager.cs" />
+    <Compile Include="Fakes\StorageTests.cs" />
     <Compile Include="ReportServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
